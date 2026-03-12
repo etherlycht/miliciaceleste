@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +18,7 @@
 
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            /* Imagem de fundo */
+            /* Imagem de fundo - lembre-se de subir o arquivo fundo.jpg ao GitHub */
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
                         url('fundo.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -28,32 +29,6 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-        }
-
-        /* Cor da Twitch */
-        .twitch { background-color: #9146FF; position: relative; overflow: hidden; }
-
-        /* Animação de Piscar (Glow) */
-        .live-blink {
-            animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;
-            box-shadow: 0 0 20px #9146ff;
-            border: 2px solid #fff;
-        }
-
-        @keyframes blinker {
-            from { opacity: 1; }
-            to { opacity: 0.7; transform: scale(1.02); }
-        }
-
-        /* Badge de "AO VIVO" pequena sobre o botão */
-        .live-dot {
-            height: 10px;
-            width: 10px;
-            background-color: #ff0000;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            box-shadow: 0 0 10px #ff0000;
         }
 
         .container {
@@ -68,28 +43,14 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        h1 {
-            color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            color: var(--subtext);
-            margin-bottom: 2rem;
-        }
+        h1 { color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem; }
+        p { color: var(--subtext); margin-bottom: 2rem; }
 
         .links-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        .twitch { background-color: #9146FF; position: relative; }
-        .live-blink { 
-            animation: blinker 1.5s infinite alternate; 
-            box-shadow: 0 0 15px #9146ff; 
-        }
-        @keyframes blinker { from { opacity: 1; } to { opacity: 0.7; } }
 
         .btn {
             display: flex;
@@ -109,12 +70,24 @@
             filter: brightness(1.1);
         }
 
-        /* Cores das Redes Sociais */
-        .twitch { background-color: #9146FF; }
+        /* Cores e Efeitos Específicos */
+        .twitch { background-color: #9146FF; position: relative; }
         .whatsapp { background-color: #25D366; }
         .telegram { background-color: #0088cc; }
         .discord  { background-color: #5865F2; }
         .facebook { background-color: #1877F2; }
+
+        /* Animação para quando estiver AO VIVO */
+        .live-blink {
+            animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+            box-shadow: 0 0 20px #9146ff;
+            border: 2px solid #fff;
+        }
+
+        @keyframes blinker {
+            from { opacity: 1; }
+            to { opacity: 0.7; transform: scale(1.02); }
+        }
 
         .footer {
             margin-top: 2rem;
@@ -132,7 +105,6 @@
             margin-bottom: 1rem;
             border: 1px solid var(--primary);
         }
-        
     </style>
 </head>
 <body>
@@ -142,11 +114,11 @@
         <h1>Milícia Celeste</h1>
         <p>Conecte-se com a nossa comunidade e acompanhe nossas atualizações.</p>
 
-              <div class="links-container">
+        <div class="links-container">
             <a href="https://twitch.tv/cmdr_dvtra" target="_blank" class="btn twitch live-blink">
-                <i class="fa-brands fa-twitch"></i> Twitch
+                <i class="fa-brands fa-twitch"></i> AO VIVO NA TWITCH
             </a>
-                  
+
             <a href="https://wa.me/5532988514856" target="_blank" class="btn whatsapp">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
             </a>
