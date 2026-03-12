@@ -105,6 +105,8 @@
             margin-bottom: 1rem;
             border: 1px solid var(--primary);
         }
+        .share { background-color: #64748b; cursor: pointer; border: none; width: 100%; font-size: 1rem; 
+        }
     </style>
 </head>
 <body>
@@ -134,12 +136,31 @@
             <a href="https://facebook.com/1DXDkt3Nj2" target="_blank" class="btn facebook">
                 <i class="fa-brands fa-facebook"></i> Comunidade Facebook
             </a>
+            
+            <button onclick="compartilhar()" class="btn share">
+                <i class="fa-solid fa-share-nodes"></i> Compartilhar Site
+            </button>
         </div>
 
         <div class="footer">
             &copy; 2026 Milícia Celeste. Todos os direitos reservados.
         </div>
     </div>
-
 </body>
+<script>
+        function compartilhar() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Milícia Celeste',
+                    text: 'Confira o site oficial da Milícia Celeste!',
+                    url: window.location.href
+                })
+                .catch((error) => console.log('Erro ao compartilhar', error));
+            } else {
+                // Caso o navegador não suporte a função (PCs antigos), ele copia o link
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copiado para a área de transferência!');
+            }
+        }
+    </script>    
 </html>
