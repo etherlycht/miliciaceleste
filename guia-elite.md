@@ -169,15 +169,22 @@ GlareScale 0.08 GlareScale
 ##### Testei com sucesso até
 MinThreshold 0.30 MinThreshold
 
+
 MaxThreshold 500.0 MaxThreshold 
+
 
 GlareScale 0.55 GlareScale
 
+
 ThresholdType 4 ThresholdType 
+
 
 FilterRadius 3.0 FilterRadius 
 
+
 FilterRadiusWide 5.0 FilterRadiusWide 
+
+
 
 
 
