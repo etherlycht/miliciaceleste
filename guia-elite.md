@@ -97,55 +97,86 @@ sudo apt install preload
 ### Linhas a sertem alteradas:
 ### 4.1  Em DirectionalShadows_Ultra:
 (Todas as cinco linhas contendo as Sombras direcionais)
+
 Cascade
+
 CellResolution 4096 CellResolution
 
 ### 4.2 Em Planets:
 Ultra
+
 LocalisationName QUALITY_ULTRA LocalisationName
+
 TextureSize 4096 TextureSize
+
 AtmosphereSteps 6 AtmosphereSteps
+
 CloudsEnabled true CloudsEnabled
+
 WorkPerFrame 512 WorkPerFrame
+
 TexturePoolBudget 100 TexturePoolBudget
 
 ### 4.3 Em GalaxyBackground:
 High
+
 LocalisationName QUALITY_HIGH LocalisationName
+
 TextureSize 4096 TextureSize
+
 High
     
 ### 4.5. Em BLOOM:
 Ultra
+
 LocalisationName QUALITY_ULTRA LocalisationName
+
 Method ImprovedCustomPassCount Method
+
 MinThreshold 0.0 MinThreshold
+
 MaxThreshold 0.375 MaxThreshold
+
 GlareScale 0.06 GlareScale
+
 ThresholdType 4 ThresholdType
+
 FilterRadius 3.0 FilterRadius
+
 FilterRadiusWide 4.0 FilterRadiusWide
+
 Ultra
 
 ### 4.6 Em Envmap:
 High
+
 LocalisationName QUALITY_HIGH LocalisationName
+
 TextureSize 1024 TextureSize
+
 NumMips 8 NumMips
+
 High
 
 #### P.S.: O efeito BLOOM pode variar mais como:
 MaxThreshold 0.4375 MaxThreshold
+
 GlareScale 0.07 GlareScale 
 ##### Ou
 MaxThreshold 0.5 MaxThreshold
+
 GlareScale 0.08 GlareScale
 ##### Testei com sucesso até
 MinThreshold 0.30 MinThreshold
+
 MaxThreshold 500.0 MaxThreshold 
+
 GlareScale 0.55 GlareScale
+
 ThresholdType 4 ThresholdType 
+
 FilterRadius 3.0 FilterRadius 
+
 FilterRadiusWide 5.0 FilterRadiusWide 
 
 
