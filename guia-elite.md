@@ -92,7 +92,7 @@ sudo apt install preload
 /home/dvtra/.steam/steam/steamapps/common/Elite Dangerous/Products/elite-dangerous-odyssey-64/GraphicsConfiguration.xml
 
 ### Colar e alter em:
-/home/dvtra/.steam/steam/steamapps/compatdata/359320/pfx/drive_c/users/steamuser/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics
+/home/dvtra/.steam/steam/steamapps/compatdata/359320/pfx/drive_c/users/steamuser/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics/GraphicsConfigurationOverride.xml
 
 ### Linhas a sertem alteradas:
 ### 4.1  Em DirectionalShadows_Ultra:
