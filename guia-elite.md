@@ -17,10 +17,10 @@ O script fornecido na página inicial automatiza as seguintes tarefas:
 echo "--- Aplicando Otimizações de Baixa Latência e TCP ---"
 
 ### Memória e Swap
+[cat /proc/sys/vm/swappiness (valor normal 60, isso diminui a necessidade de swap que retarda a ram)]
 sudo sysctl -w vm.swappiness=10
-### ou
-cat /proc/sys/vm/swappiness (valor normal 60, isso diminui a necessidade de swap que retarda a ram)
 
+### ou
 echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf 
 
 ### Protocolos de Congestionamento e Fila
