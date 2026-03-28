@@ -19,10 +19,10 @@ sudo sysctl -w net.ipv4.tcp_slow_start_after_idle=0
 # Buffers de Memória de Rede
 sudo sysctl -w net.core.rmem_max=16777216
 sudo sysctl -w net.core.wmem_max=16777216
-sudo sysctl -w net.core.rmem_default= 16777216
-sudo sysctl -w net.core.wmem_default= 16777216
+sudo sysctl -w net.core.rmem_default=16777216
+sudo sysctl -w net.core.wmem_default=16777216
 sudo sysctl -w net.core.netdev_max_backlog=5000
-sudo sysctl -w net.ipv4.udp_mem= 1536000
+sudo sysctl -w net.ipv4.udp_mem=1536000
 sudo sysctl -w net.core.dev_weight=64
 
 # --- Otimizando Hardware de Rede ---
@@ -30,6 +30,7 @@ sudo sysctl -w net.core.dev_weight=64
 INTERFACE=$(ip route | grep default | awk '{print $5}' | head -n1)
 if [ -n "$INTERFACE" ]; then
      echo "--- Otimizando Hardware (Interface: $INTERFACE) ---"
+     # Desativa coalescência (latência instantânea) e economia de energia (EEE)
      sudo ethtool -C "$INTERFACE" rx-usecs 0 tx-usecs 0
      sudo ethtool --set-eee "$INTERFACE" eee off
 else
@@ -46,6 +47,10 @@ while [ -z "$PID" ]; do
 done
 echo "Jogo detectado! PID: $PID"
 sudo renice -n -10 -p $PID
+
+# Prioridade de CPU em tempo real (Round Robin) para o processo
+# Isso ajuda muito a evitar stutters em processadores com muitos núcleos
+sudo chrt -r -p 10 $PID
 
 echo "Configurações aplicadas com sucesso. Boa caça, Comandante, o7!"
 sleep 3
