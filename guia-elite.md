@@ -23,28 +23,16 @@ cat /proc/sys/vm/swappiness (valor normal 60, isso diminui a necessidade de swap
 
 echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf 
 
-sudo sysctl -p
-
 ### Protocolos de Congestionamento e Fila
 sudo sysctl -w net.core.default_qdisc=fq
 
 sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
 
 ### ou 
-sudo modprobe tcp_bbr
 
-lsmod | grep bbr
+echo "net.core.default_qdisc=fq" | sudo tee -a /etc/sysctl.conf
 
-sudo sysctl net.ipv4.tcp_congestion_control
-
-se não estiver funcionando:
-
-sudo sysctl -w net.core.default_qdisc=fq
-
-sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
-
-### verificar novamente
-sysctl net.ipv4.tcp_congestion_control
+echo "net.tcp_congestion_control" | sudo tee -a /etc/sysctl.conf
 
 ### Latência e Timers TCP
 sudo sysctl -w net.ipv4.tcp_low_latency=1
@@ -62,12 +50,14 @@ echo "net.ipv4.tcp_congestion_control=bbr" | sudo tee -a /etc/sysctl.conf
 
 echo "net.ipv4.tcp_low_latency=1" | sudo tee -a /etc/sysctl.conf 
 
-sudo sysctl -p
-
 ### Buffers de Memória de Rede
 sudo sysctl -w net.core.rmem_max=16777216
 
 sudo sysctl -w net.core.wmem_max=16777216
+
+sudo sysctl -w net.core.rmem_default= 16777216
+
+sudo sysctl -w net.core.wmem_default= 16777216
 
 sudo sysctl -w net.core.netdev_max_backlog=5000
 
@@ -78,21 +68,32 @@ echo "net.core.rmem_max=16777216" | sudo tee -a /etc/sysctl.conf
 
 echo "net.core.wmem_max=16777216" | sudo tee -a /etc/sysctl.conf 
 
+echo "net.core.rmem_default= 16777216" | sudo tee -a /etc/sysctl.conf 
+
+echo "net.core.wmem_default= 16777216" | sudo tee -a /etc/sysctl.conf 
+
 echo "net.core.netdev_max_backlog=5000" | sudo tee -a /etc/sysctl.conf 
 
 echo "net.core.dev_weight=64" | sudo tee -a /etc/sysctl.conf 
 
-### para abrir mais rapido os programas:
-
-sudo apt install preload
+### Testar
+sudo sysctl -p
 
 ## 4. Configurações Gráficas
 
 ### Localize e copie o arquivo:
-/home/dvtra/.steam/steam/steamapps/common/Elite Dangerous/Products/elite-dangerous-odyssey-64/GraphicsConfiguration.xml
+#### No Steam;
+/home/(nomedeusuario)/.steam/steam/steamapps/common/Elite Dangerous/Products/elite-dangerous-odyssey-64/GraphicsConfiguration.xml
 
-### Colar e alter em:
-/home/dvtra/.steam/steam/steamapps/compatdata/359320/pfx/drive_c/users/steamuser/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics/GraphicsConfigurationOverride.xml
+#### No Wine;
+/home/(nomedeusuario)/.wine/drive_c/Program Files (x86)/Elite_Dangerous/Products/elite-dangerous-odyssey-64/
+
+### Colar e alterar:
+#### No Steam;
+/home/(nomedeusuario)/.steam/steam/steamapps/compatdata/359320/pfx/drive_c/users/steamuser/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics/GraphicsConfigurationOverride.xml
+
+#### No Wine;
+/home/(nomedeusuario)/.wine/drive_c/users/(nomedeusuario)/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics/
 
 ### Linhas a sertem alteradas:
 ### 4.1  Em DirectionalShadows_Ultra:
@@ -123,8 +124,6 @@ High
 LocalisationName QUALITY_HIGH LocalisationName
 
 TextureSize 4096 TextureSize
-
-High
     
 ### 4.5. Em BLOOM:
 Ultra
@@ -145,8 +144,6 @@ FilterRadius 3.0 FilterRadius
 
 FilterRadiusWide 4.0 FilterRadiusWide
 
-Ultra
-
 ### 4.6 Em Envmap:
 High
 
@@ -155,8 +152,6 @@ LocalisationName QUALITY_HIGH LocalisationName
 TextureSize 1024 TextureSize
 
 NumMips 8 NumMips
-
-High
 
 #### P.S.: O efeito BLOOM pode variar mais como:
 MaxThreshold 0.4375 MaxThreshold
