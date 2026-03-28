@@ -31,8 +31,8 @@ INTERFACE=$(ip route | grep default | awk '{print $5}' | head -n1)
 if [ -n "$INTERFACE" ]; then
      echo "--- Otimizando Hardware (Interface: $INTERFACE) ---"
      # Desativa coalescência (latência instantânea) e economia de energia (EEE)
-     sudo ethtool -C "$INTERFACE" rx-usecs 0 tx-usecs 0
-     sudo ethtool --set-eee "$INTERFACE" eee off
+     sudo ethtool -C "$INTERFACE" rx-usecs 0 tx-usecs 0 2>/dev/null || echo "Aviso: rx-usecs não suportado."
+     sudo ethtool --set-eee "$INTERFACE" eee off 2>/dev/null || echo "Aviso: EEE não suportado."
 else
     echo "Aviso: Interface de rede ativa não encontrada."
 fi
@@ -45,12 +45,18 @@ while [ -z "$PID" ]; do
       PID=$(pgrep -f "EliteDangerous64.exe")
       sleep 2
 done
+
 echo "Jogo detectado! PID: $PID"
+
+# Aplica a prioridade alta no processo do jogo (-10 é um ótimo equilíbrio)
 sudo renice -n -10 -p $PID
 
 # Prioridade de CPU em tempo real (Round Robin) para o processo
 # Isso ajuda muito a evitar stutters em processadores com muitos núcleos
 sudo chrt -r -p 10 $PID
+
+# Opcional: Se você usa placa de som externa ou quer latência de áudio menor
+sudo chrt -p -f 10 $PID
 
 echo "Configurações aplicadas com sucesso. Boa caça, Comandante, o7!"
 sleep 3
