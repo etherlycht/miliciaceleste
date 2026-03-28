@@ -29,10 +29,9 @@ sudo sysctl -w net.core.default_qdisc=fq
 sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
 
 ### ou 
-
 echo "net.core.default_qdisc=fq" | sudo tee -a /etc/sysctl.conf
 
-echo "net.tcp_congestion_control" | sudo tee -a /etc/sysctl.conf
+echo "net.tcp_congestion_control=bbr" | sudo tee -a /etc/sysctl.conf
 
 ### Latência e Timers TCP
 sudo sysctl -w net.ipv4.tcp_low_latency=1
@@ -44,11 +43,13 @@ sudo sysctl -w net.ipv4.tcp_fin_timeout=15
 sudo sysctl -w net.ipv4.tcp_slow_start_after_idle=0
 
 ### ou
-echo "net.core.default_qdisc=fq" | sudo tee -a /etc/sysctl.conf 
-
-echo "net.ipv4.tcp_congestion_control=bbr" | sudo tee -a /etc/sysctl.conf 
-
 echo "net.ipv4.tcp_low_latency=1" | sudo tee -a /etc/sysctl.conf 
+
+echo "net.ipv4.tcp_tw_reuse=1" | sudo tee -a /etc/sysctl.conf 
+
+echo "net.ipv4.tcp_fin_timeout=15" | sudo tee -a /etc/sysctl.conf 
+
+echo "net.ipv4.tcp_slow_start_after_idle=0" | sudo tee -a /etc/sysctl.conf 
 
 ### Buffers de Memória de Rede
 sudo sysctl -w net.core.rmem_max=16777216
@@ -86,14 +87,14 @@ sudo sysctl -p
 /home/(nomedeusuario)/.steam/steam/steamapps/common/Elite Dangerous/Products/elite-dangerous-odyssey-64/GraphicsConfiguration.xml
 
 #### No Wine;
-/home/(nomedeusuario)/.wine/drive_c/Program Files (x86)/Elite_Dangerous/Products/elite-dangerous-odyssey-64/
+/home/(nomedeusuario)/.wine/drive_c/Program Files (x86)/Elite_Dangerous/Products/elite-dangerous-odyssey-64/GraphicsConfiguration.xml
 
 ### Colar e alterar:
 #### No Steam;
 /home/(nomedeusuario)/.steam/steam/steamapps/compatdata/359320/pfx/drive_c/users/steamuser/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics/GraphicsConfigurationOverride.xml
 
 #### No Wine;
-/home/(nomedeusuario)/.wine/drive_c/users/(nomedeusuario)/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics/
+/home/(nomedeusuario)/.wine/drive_c/users/(nomedeusuario)/AppData/Local/Frontier Developments/Elite Dangerous/Options/Graphics/GraphicsConfigurationOverride.xml
 
 ### Linhas a sertem alteradas:
 ### 4.1  Em DirectionalShadows_Ultra:
