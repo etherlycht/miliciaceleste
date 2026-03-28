@@ -22,7 +22,7 @@ sudo sysctl -w net.core.wmem_max=16777216
 sudo sysctl -w net.core.rmem_default= 16777216
 sudo sysctl -w net.core.wmem_default= 16777216
 sudo sysctl -w net.core.netdev_max_backlog=5000
-sudo sysctl -w net.ipv4.udp_mem= "768000 1024000 1536000"
+sudo sysctl -w net.ipv4.udp_mem= 1536000
 sudo sysctl -w net.core.dev_weight=64
 
 # --- Otimizando Hardware de Rede ---
